@@ -1,5 +1,5 @@
 # RPPicoTFT-ILI9341-ImageBuffer-C++
-Fork for the RPIPicoTFT2.4 with image buffers in C++
+Fork for the RPIPicoTFT2.4 with image buffers in C++. I ran the following code on a RP2350B.
 
 > RPIPicoTFT2.4 by [jondurrant](https://github.com/jondurrant/RPIPicoTFT2.4)
 
