@@ -46,9 +46,10 @@ void core1_main ();
 
 void core1_main () {
 	sleep_ms (10);
-	init_imageBuffer();
-	sleep_ms(2000);
+	init_imageBuffer();			// Initialize the imageBuffer
+	sleep_ms(2000);				// Wait for stdio_init_all to initialize
 
+	// Constantly Init the Image Buffer
 	for (;;){
 		sleep_us(30);
 		tft->writeImageBuffer();
@@ -59,25 +60,27 @@ void core1_main () {
 
 int main(void) {
 	stdio_init_all();
+	// Launch Writing the image buffer on core 1
 	multicore_launch_core1(core1_main);
-	sleep_ms(2000);			// Wait for INIT
-	// printf("GO\n");
 
-	tft->setScreenColour(TFT_BLACK);
+	sleep_ms(2000);							// Wait for stdio_init_all to initialize
 
-	sleep_ms(2000);
-	//tft->test();
+	// Write Test Colours on Screen
+	tft->test();
+
+	sleep_ms(3000);
+	
+	tft->clear();
+	// OR
 	// tft->setScreenColour(TFT_BLACK);
-	// sleep_ms(1000);
-	// //PIX(120, 100) = TFT_BLUE;
-	tft->drawRect(120, 100, 1, 1, TFT_BLUE);
-	sleep_ms(2000);
+
+	// Draw A Small Rectangle
+	tft->drawRect(120, 100, 20, 20, TFT_BLUE);
+
+	sleep_ms(3000);
+
+	// Write a String
 	tft->putStr("Hello", 20, 20, tft->RGBto16bit(0xE0, 0x30, 0x3F));
-
-	sleep_ms(2000);
-
-	//tft->drawBitmap1(10, 10, blackbuck.w, blackbuck.h, blackbuck.data);
-
 
   return 0;
 }
