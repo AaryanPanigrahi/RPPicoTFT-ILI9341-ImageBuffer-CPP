@@ -3,16 +3,12 @@ Fork for the RPIPicoTFT2.4 with image buffers in C++
 
 > RPIPicoTFT2.4 by [jondurrant](https://github.com/jondurrant/RPIPicoTFT2.4)
 
-___
-
 ## Usage
 ### Writing to the buffer
 While old funcionality is the same as the library linked above, I added the convinience of writing pixels directly to the buffer
 
 for a uint16_t - RGB565 colour value 
 **PIX(x,y)** = colour
-
----
 
 ## Changes
 - Writes to an image buffer instead of the TFT directly to increase flexibility of use
