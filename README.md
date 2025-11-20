@@ -5,6 +5,8 @@ Fork for the RPIPicoTFT2.4 (TFT ILI9341) with image buffers in C++
   
 I ran the following code on the RP2350B (RP Pico 2)  
 
+For an implementation in C - check out [RPPicoTFT-ILI9341-ImageBuffer-C](https://github.com/AaryanPanigrahi/RPPicoTFT-ILI9341-ImageBuffer-C)
+
 ## Usage
 ### Writing to the buffer  
 While old funcionality is the same as the library linked above, I added the convinience of writing pixels directly to the buffer  
