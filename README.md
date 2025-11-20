@@ -11,7 +11,9 @@ While old funcionality is the same as the library linked above, I added the conv
   
 for a uint16_t - RGB565 colour value   
 __**PIX(x,y)**__ = colour  
-
+  
+Added **setScreenColour** that updates the entire screen to 'colour'  
+  
 ## Changes  
 - Writes to an image buffer instead of the TFT directly to increase flexibility of use   
     "Overwriting" a spot on the TFT glitched it out. A tft->clear then re-writing the same data was a waste of computation  
