@@ -29,7 +29,7 @@
 
 #define PIN_SDO	36
 
-// Init the TFT display
+// Init the TFT display as a global instance (multicore access)
 Ili9341 *tft = new Ili9341(
 	spi0, 90 * MHz,
 	PIN_SDO,		//SDO(MISO)

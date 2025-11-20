@@ -255,7 +255,7 @@ void Ili9341::ILI9341_WriteData(const  void *buffer, int bytes){
 void Ili9341::writeImageBuffer (
 ){
 	ILI9341_SetOutWriting(0, PIX_WIDTH - 1, 0, PIX_HEIGHT - 1);
-		for (int y = 0; y < PIX_HEIGHT; ++y) {
+		for (int y = PIX_HEIGHT - 1; y >= 0; --y) {
 		const uint16_t* row = (const uint16_t*)&imageBuffer[y * PIX_WIDTH];
 		ILI9341_WriteData(row, PIX_WIDTH * sizeof(uint16_t));
 	}
@@ -350,8 +350,8 @@ void Ili9341::intDrawBitmap1(
 		uint16_t bg
 		){
 
-	for (int idx_y = y; idx_y < hei + y; idx_y++) { 
-		for (int idx_x = x; idx_x < wid + x; idx_x++) {
+	for (int idx_y = y; (idx_y < y + hei) && (idx_y < PIX_HEIGHT); ++idx_y) {
+		for (int idx_x= x; (idx_x < x + wid) && (idx_x < PIX_WIDTH); ++idx_x) {
 
 			uint16_t index = (idx_y - y) * dataWid + (idx_x - x);
 			uint16_t byteI = index / 8;
@@ -376,8 +376,8 @@ void Ili9341::drawBitmap32(
 		uint16_t hei,
 		const uint32_t * bitmap
 	) {
-	for (int idx_y = y; idx_y < hei + y; idx_y++) { 
-		for (int idx_x = x; idx_x < wid + x; idx_x++) {
+	for (int idx_y = y; (idx_y < y + hei) && (idx_y < PIX_HEIGHT); ++idx_y) {
+		for (int idx_x= x; (idx_x < x + wid) && (idx_x < PIX_WIDTH); ++idx_x) {
 
 			uint16_t index = (idx_y - y) * wid + (idx_x - x);
 
@@ -399,8 +399,8 @@ void Ili9341::drawBitmapRGB8(
 		const uint8_t * bitmap,
 		bool whiteIsBlack
 	) {
-	for (int idx_y = y; idx_y < hei + y; idx_y++) { 
-		for (int idx_x = x; idx_x < wid + x; idx_x++) {
+	for (int idx_y = y; (idx_y < y + hei) && (idx_y < PIX_HEIGHT); ++idx_y) {
+		for (int idx_x= x; (idx_x < x + wid) && (idx_x < PIX_WIDTH); ++idx_x) {
 			uint16_t index = ((idx_y - x) *wid + (idx_x - x)) * 3;
 
 			uint8_t red = bitmap[index];
@@ -483,8 +483,6 @@ int Ili9341::putChar(
 	} else {
 		wid = 8 * ((trueWid/8) + 1);
 	}
-
-	//printf("%c %u %u %u\n", c, glyphI, trueWid, wid);
 
 	intDrawBitmap1(
 			x,
